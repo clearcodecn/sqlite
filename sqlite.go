@@ -99,7 +99,7 @@ func (dialector Dialector) ClauseBuilders() map[string]clause.ClauseBuilder {
 			if limit, ok := c.Expression.(clause.Limit); ok {
 				if (limit.Limit != nil) && (*limit.Limit > 0 || limit.Offset > 0) {
 					if *limit.Limit <= 0 {
-						limit.Limit = -1
+						*limit.Limit = -1
 					}
 					builder.WriteString("LIMIT ")
 					builder.WriteString(strconv.Itoa(*limit.Limit))
